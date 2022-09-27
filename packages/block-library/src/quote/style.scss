@@ -1,9 +1,9 @@
 .wp-block-quote {
 	box-sizing: border-box;
 	overflow-wrap: break-word; // Break long strings of text without spaces so they don't overflow the block.
-	// .is-style-large and .is-large are kept for backwards compatibility. The :not pseudo-class is used to enable switching styles. See PR #37580.
-	&.is-style-large:not(.is-style-plain),
-	&.is-large:not(.is-style-plain) {
+	// .is-style-large and .is-large are kept for backwards compatibility.
+	&.is-style-large,
+	&.is-large {
 		margin-bottom: 1em;
 		padding: 0 1em;
 
@@ -17,6 +17,25 @@
 		footer {
 			font-size: 1.125em;
 			text-align: right;
+		}
+	}
+
+	// Because the .is-style-large classes can no longer be removed, we need to
+	// override their styles when Plain is selected
+	&.is-style-plain {
+		margin-bottom: unset;
+		padding: unset;
+
+		p {
+			font-size: unset;
+			font-style: unset;
+			line-height: unset;
+		}
+
+		cite,
+		footer {
+			font-size: unset;
+			text-align: unset;
 		}
 	}
 }
